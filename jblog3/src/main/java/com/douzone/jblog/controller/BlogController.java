@@ -1,13 +1,18 @@
 package com.douzone.jblog.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.douzone.jblog.service.BlogService;
+import com.douzone.jblog.service.CategoryService;
 import com.douzone.jblog.vo.BlogVo;
+import com.douzone.jblog.vo.CategoryVo;
 
 @Controller
 public class BlogController {
@@ -15,11 +20,17 @@ public class BlogController {
 	@Autowired
 	private BlogService blogService;
 	
+	@Autowired
+	private CategoryService categoryService;
+	
 	// 1. 특정 유저의 블로그 접속
 	@RequestMapping("/{id}")
 	public String main(@PathVariable("id") String id, Model model) {
 		BlogVo vo = blogService.getBlog(id);
 		model.addAttribute("vo", vo);
+		
+		List<CategoryVo> list = categoryService.findAll(id);
+		model.addAttribute("list", list);
 		return "blog/main";
 	}
 	
@@ -36,6 +47,9 @@ public class BlogController {
 	public String admincategory(@PathVariable("id") String id, Model model) {
 		BlogVo vo = blogService.getBlog(id);
 		model.addAttribute("vo", vo);
+		
+		List<CategoryVo> list = categoryService.findAll(id);
+		model.addAttribute("list", list);
 		return "blog/admin-category";
 	}
 	
@@ -44,6 +58,20 @@ public class BlogController {
 	public String adminwrite(@PathVariable("id") String id, Model model) {
 		BlogVo vo = blogService.getBlog(id);
 		model.addAttribute("vo", vo);
+		
+		List<CategoryVo> list = categoryService.findAll(id);
+		model.addAttribute("list", list);
 		return "blog/admin-write";
+	}
+	
+	// 5. 카테고리 추가
+	@RequestMapping("/{id}/categoryadd")
+	public String categoryadd(@PathVariable("id") String id, @RequestParam("name") String name) {
+		CategoryVo vo = new CategoryVo();
+		vo.setId(id);
+		vo.setName(name);
+		categoryService.addCategory(vo);
+		
+		return "redirect:/" + id + "/admincategory";
 	}
 }

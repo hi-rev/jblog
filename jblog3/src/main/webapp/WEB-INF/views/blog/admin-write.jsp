@@ -14,9 +14,9 @@
 		<div id="header">
 			<h1>${vo.title }</h1>
 			<ul>
-				<li><a href="">로그인</a></li>
+				<li><a href="${pageContext.request.contextPath}/user/login">로그인</a></li>
 				<li><a href="">로그아웃</a></li>
-				<li><a href="">블로그 관리</a></li>
+				<li><a href="${pageContext.request.contextPath}/${vo.id }/adminbasic">블로그 관리</a></li>
 			</ul>
 		</div>
 		<div id="wrapper">
@@ -33,8 +33,9 @@
 			      			<td>
 			      				<input type="text" size="60" name="title">
 				      			<select name="category">
-				      				<option>미분류</option>
-				      				<option>자바</option>
+				      				<c:forEach items="${list}" var="vo" varStatus="status">
+				      					<option>${vo.name }</option>
+				      				</c:forEach>
 				      			</select>
 				      		</td>
 			      		</tr>
@@ -52,7 +53,7 @@
 		</div>
 		<div id="footer">
 			<p>
-				<strong>Spring 이야기</strong> is powered by JBlog (c)2016
+				<strong>${vo.title }</strong> is powered by JBlog (c)2016
 			</p>
 		</div>
 	</div>

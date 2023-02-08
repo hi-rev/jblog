@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.douzone.jblog.service.BlogService;
+import com.douzone.jblog.service.CategoryService;
 import com.douzone.jblog.service.UserService;
 import com.douzone.jblog.vo.UserVo;
 
@@ -19,6 +20,9 @@ public class UserController {
 	@Autowired
 	private BlogService blogService;
 	
+	@Autowired
+	private CategoryService categoryService;
+	
 	// 1. 회원가입 페이지 이동
 	@RequestMapping(value = "/join", method=RequestMethod.GET)
 	public String join() {
@@ -31,6 +35,7 @@ public class UserController {
 	public String join(UserVo vo) {
 		userService.join(vo);
 		blogService.newBlog(vo.getId());
+		categoryService.newCategory(vo.getId());
 		return "user/joinsuccess";
 	}
 	

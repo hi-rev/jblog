@@ -49,16 +49,15 @@
 		<div id="navigation">
 			<h2>카테고리</h2>
 			<ul>
-				<li><a href="">닥치고 스프링</a></li>
-				<li><a href="">스프링 스터디</a></li>
-				<li><a href="">스프링 프로젝트</a></li>
-				<li><a href="">기타</a></li>
+				<c:forEach items="${list }" var="vo" varStatus="status" >
+					<li><a href="">${vo.name }</a></li>
+				</c:forEach>
 			</ul>
 		</div>
 		
 		<div id="footer">
 			<p>
-				<strong>Spring 이야기</strong> is powered by JBlog (c)2016
+				<strong>${vo.title }</strong> is powered by JBlog (c)2016
 			</p>
 		</div>
 	</div>
