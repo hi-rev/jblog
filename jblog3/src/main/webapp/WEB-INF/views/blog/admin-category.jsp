@@ -12,7 +12,7 @@
 <body>
 	<div id="container">
 		<div id="header">
-			<h1>Spring 이야기</h1>
+			<h1>${vo.title }</h1>
 			<ul>
 				<li><a href="">로그인</a></li>
 				<li><a href="">로그아웃</a></li>
@@ -22,9 +22,9 @@
 		<div id="wrapper">
 			<div id="content" class="full-screen">
 				<ul class="admin-menu">
-					<li><a href="">기본설정</a></li>
+					<li><a href="${pageContext.request.contextPath}/${vo.id }/adminbasic">기본설정</a></li>
 					<li class="selected">카테고리</li>
-					<li><a href="">글작성</a></li>
+					<li><a href="${pageContext.request.contextPath}/${vo.id }/adminwrite">글작성</a></li>
 				</ul>
 		      	<table class="admin-cat">
 		      		<tr>
