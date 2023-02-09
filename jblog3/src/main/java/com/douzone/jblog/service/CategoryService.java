@@ -32,5 +32,9 @@ public class CategoryService {
 	public CategoryVo findByName(String name) {
 		return categoryRepository.findByName(name);
 	}
+
+	public Long findCount(Long no, String id) {
+		return categoryRepository.findCountByNo(no, id);
+	}
 	
 }

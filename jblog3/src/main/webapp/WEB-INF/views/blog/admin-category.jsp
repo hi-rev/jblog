@@ -38,7 +38,7 @@
 		      			<tr>
 							<td>${count }</td>
 							<td>${vo.name }</td>
-							<td>10</td>
+							<td>${vo.count }</td>   
 							<td><img src="${pageContext.request.contextPath}/assets/images/delete.jpg"></td>
 						</tr>
 						<c:set var="count" value="${count+1 }" />	

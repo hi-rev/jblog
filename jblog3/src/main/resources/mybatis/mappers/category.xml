@@ -31,4 +31,14 @@
 		]]>
 	</select>
 	
+	<select id="findCountByNo" parameterType="map" resultType="long">
+		<![CDATA[
+			select count(*)
+			from post a, category b
+			where a.category_no = b.no
+			and b.id = #{id}
+			and category_no = #{no};
+		]]>
+	</select>
+	
 </mapper>

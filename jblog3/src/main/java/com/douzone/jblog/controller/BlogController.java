@@ -61,6 +61,11 @@ public class BlogController {
 		model.addAttribute("vo", vo);
 		
 		List<CategoryVo> list = categoryService.findAll(id);
+
+		for (CategoryVo categoryVo: list) {
+			categoryVo.setCount(categoryService.findCount(categoryVo.getNo(), id));
+		}
+		
 		model.addAttribute("list", list);
 		return "blog/admin-category";
 	}
@@ -73,6 +78,7 @@ public class BlogController {
 		
 		List<CategoryVo> list = categoryService.findAll(id);
 		model.addAttribute("list", list);
+		
 		return "blog/admin-write";
 	}
 	

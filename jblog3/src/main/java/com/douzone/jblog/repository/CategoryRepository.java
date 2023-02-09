@@ -1,6 +1,7 @@
 package com.douzone.jblog.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,11 @@ public class CategoryRepository {
 
 	public CategoryVo findByName(String name) {
 		return sqlSession.selectOne("category.findByName", name);
+	}
+
+	public Long findCountByNo(Long no, String id) {
+		Map<String, Object> map = Map.of("no", no, "id", id);
+		return sqlSession.selectOne("category.findCountByNo", map);
 	}
 	
 }
