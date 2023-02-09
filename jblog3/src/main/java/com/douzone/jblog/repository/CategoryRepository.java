@@ -21,5 +21,9 @@ public class CategoryRepository {
 	public List<CategoryVo> findAll(String id) {
 		return sqlSession.selectList("category.findAll", id);
 	}
+
+	public CategoryVo findByName(String name) {
+		return sqlSession.selectOne("category.findByName", name);
+	}
 	
 }

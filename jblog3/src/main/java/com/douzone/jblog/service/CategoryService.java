@@ -28,5 +28,9 @@ public class CategoryService {
 	public void addCategory(CategoryVo vo) {
 		categoryRepository.insert(vo);
 	}
+
+	public CategoryVo findByName(String name) {
+		return categoryRepository.findByName(name);
+	}
 	
 }

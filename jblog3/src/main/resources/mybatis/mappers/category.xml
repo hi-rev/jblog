@@ -23,4 +23,12 @@
 		]]>
 	</select>
 	
+	<select id="findByName" parameterType="string" resultType="categoryvo">
+		<![CDATA[
+			select no, name, id
+			from category
+			where name=#{name }
+		]]>
+	</select>
+	
 </mapper>

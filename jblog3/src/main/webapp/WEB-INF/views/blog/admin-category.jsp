@@ -31,20 +31,18 @@
 		      			<th>번호</th>
 		      			<th>카테고리명</th>
 		      			<th>포스트 수</th>
-		      			<th>설명</th>
 		      			<th>삭제</th>      			
 		      		</tr>
-		      		
+		      		<c:set var="count" value="1" />
 		      		<c:forEach items="${list }" var="vo" varStatus="status" >
 		      			<tr>
-							<td>${vo.no }</td>
+							<td>${count }</td>
 							<td>${vo.name }</td>
 							<td>10</td>
-							<td>카테고리</td>
 							<td><img src="${pageContext.request.contextPath}/assets/images/delete.jpg"></td>
 						</tr>
+						<c:set var="count" value="${count+1 }" />	
 		      		</c:forEach>
-									  
 				</table>
       			
       			<h4 class="n-c">새로운 카테고리 추가</h4>

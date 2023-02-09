@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.douzone.jblog.service.BlogService;
 import com.douzone.jblog.service.CategoryService;
+import com.douzone.jblog.service.PostService;
 import com.douzone.jblog.vo.BlogVo;
 import com.douzone.jblog.vo.CategoryVo;
+import com.douzone.jblog.vo.PostVo;
 
 @Controller
 public class BlogController {
@@ -23,6 +25,9 @@ public class BlogController {
 	@Autowired
 	private CategoryService categoryService;
 	
+	@Autowired
+	private PostService postService;
+	
 	// 1. 특정 유저의 블로그 접속
 	@RequestMapping("/{id}")
 	public String main(@PathVariable("id") String id, Model model) {
@@ -31,6 +36,13 @@ public class BlogController {
 		
 		List<CategoryVo> list = categoryService.findAll(id);
 		model.addAttribute("list", list);
+		
+		List<PostVo> postList = postService.findAll(id);
+		model.addAttribute("postList", postList);
+		
+		PostVo postVo = postService.findOne(id);
+		model.addAttribute("postVo", postVo);
+		
 		return "blog/main";
 	}
 	
@@ -73,5 +85,17 @@ public class BlogController {
 		categoryService.addCategory(vo);
 		
 		return "redirect:/" + id + "/admincategory";
+	}
+	
+	// 6. 글쓰기
+	@RequestMapping("/{id}/write")
+	public String write(@PathVariable("id") String id, 
+			@RequestParam("category") String categoryName, PostVo vo) {
+		
+		CategoryVo categoryVo = categoryService.findByName(categoryName);
+		vo.setCategoryNo(categoryVo.getNo());
+		postService.addPost(vo);
+		
+		return "redirect:/" + id;
 	}
 }
