@@ -20,4 +20,8 @@ public class BlogRepository {
 		return sqlSession.selectOne("blog.find", id);
 	}
 
+	public void update(BlogVo vo) {
+		sqlSession.update("blog.update", vo);
+	}
+
 }

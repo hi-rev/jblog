@@ -16,12 +16,16 @@ public class BlogService {
 		BlogVo vo = new BlogVo();
 		vo.setId(id);
 		vo.setTitle("환영합니다.");
-		vo.setProfile("profile");
+		vo.setProfile("/assets/images/spring-logo.jpg");
 		blogRepository.insert(vo);
 	}
 
 	public BlogVo getBlog(String id) {
 		return blogRepository.find(id);
+	}
+
+	public void updateBlog(BlogVo vo) {
+		blogRepository.update(vo);
 	}
 
 }

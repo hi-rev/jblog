@@ -8,9 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.douzone.jblog.service.BlogService;
 import com.douzone.jblog.service.CategoryService;
+import com.douzone.jblog.service.FileuploadService;
 import com.douzone.jblog.service.PostService;
 import com.douzone.jblog.vo.BlogVo;
 import com.douzone.jblog.vo.CategoryVo;
@@ -28,6 +30,9 @@ public class BlogController {
 	
 	@Autowired
 	private PostService postService;
+	
+	@Autowired
+	private FileuploadService fileuploadService;
 	
 	// 1. 특정 유저의 블로그 접속
 	@RequestMapping("") 
@@ -110,6 +115,19 @@ public class BlogController {
 		vo.setCategoryNo(categoryVo.getNo());
 		postService.addPost(vo);
 		
+		return "redirect:/" + id;
+	}
+	
+	// 8. 블로그 메인 변경하기(파일 업로드)
+	@RequestMapping("/update")
+	public String mainupdate(@PathVariable("id") String id, BlogVo vo, MultipartFile file) {
+		String profile = fileuploadService.restore(file);
+		if(profile != null) {
+			vo.setProfile(profile);
+		}
+		
+		vo.setId(id);
+		blogService.updateBlog(vo);
 		return "redirect:/" + id;
 	}
 }

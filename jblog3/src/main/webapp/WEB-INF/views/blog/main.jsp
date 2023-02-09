@@ -37,7 +37,7 @@
 
 		<div id="extra">
 			<div class="blog-logo">
-				<img src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg">
+				<img src="${pageContext.request.contextPath}${vo.profile}">
 			</div>
 		</div>
 
@@ -52,7 +52,7 @@
 		
 		<div id="footer">
 			<p>
-				<strong>${vo.title }</strong> is powered by JBlog (c)2016
+				<strong>${blogvo.title }</strong> is powered by JBlog (c)2023
 			</p>
 		</div>
 	</div>

@@ -26,24 +26,25 @@
 					<li><a href="${pageContext.request.contextPath}/${vo.id }/admincategory">카테고리</a></li>
 					<li><a href="${pageContext.request.contextPath}/${vo.id }/adminwrite">글작성</a></li>
 				</ul>
-				<form action="" method="post">
+				<form action="${pageContext.request.contextPath}/${vo.id }/update" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="profile" value="${vo.profile }" />
 	 		      	<table class="admin-config">
-			      		<tr>
-			      			<td class="t">블로그 제목</td>
-			      			<td><input type="text" size="40" name="title"></td>
-			      		</tr>
-			      		<tr>
-			      			<td class="t">로고이미지</td>
-			      			<td><img src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg"></td>      			
-			      		</tr>      		
-			      		<tr>
-			      			<td class="t">&nbsp;</td>
-			      			<td><input type="file" name="logo-file"></td>      			
-			      		</tr>           		
-			      		<tr>
-			      			<td class="t">&nbsp;</td>
-			      			<td class="s"><input type="submit" value="기본설정 변경"></td>      			
-			      		</tr>           		
+				      		<tr>
+				      			<td class="t">블로그 제목</td>
+				      			<td><input type="text" size="40" name="title" value="${vo.title }"></td>
+				      		</tr>
+				      		<tr>
+				      			<td class="t">로고이미지</td>
+				      			<td><img src="${pageContext.request.contextPath}${vo.profile }"></td>      			
+				      		</tr>      		
+				      		<tr>
+				      			<td class="t">&nbsp;</td>
+				      			<td><input type="file" name="file"></td>      			
+				      		</tr>           		
+				      		<tr>
+				      			<td class="t">&nbsp;</td>
+				      			<td class="s"><input type="submit" value="기본설정 변경"></td>      			
+				      		</tr>		
 			      	</table>
 				</form>
 			</div>
