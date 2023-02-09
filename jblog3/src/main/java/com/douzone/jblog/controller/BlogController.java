@@ -17,6 +17,7 @@ import com.douzone.jblog.vo.CategoryVo;
 import com.douzone.jblog.vo.PostVo;
 
 @Controller
+@RequestMapping("/{id:(?!assets).*}")
 public class BlogController {
 
 	@Autowired
@@ -29,7 +30,7 @@ public class BlogController {
 	private PostService postService;
 	
 	// 1. 특정 유저의 블로그 접속
-	@RequestMapping("/{id}")
+	@RequestMapping("") 
 	public String main(@PathVariable("id") String id, Model model) {
 		BlogVo vo = blogService.getBlog(id);
 		model.addAttribute("vo", vo);
@@ -47,7 +48,7 @@ public class BlogController {
 	}
 	
 	// 2. 관리 페이지
-	@RequestMapping("/{id}/adminbasic")	
+	@RequestMapping("/adminbasic")	
 	public String adminBasic(@PathVariable("id") String id, Model model) {
 		BlogVo vo = blogService.getBlog(id);
 		model.addAttribute("vo", vo);
@@ -55,7 +56,7 @@ public class BlogController {
 	}
 	
 	// 3. 관리 페이지 - 카테고리
-	@RequestMapping("/{id}/admincategory")
+	@RequestMapping("/admincategory")
 	public String admincategory(@PathVariable("id") String id, Model model) {
 		BlogVo vo = blogService.getBlog(id);
 		model.addAttribute("vo", vo);
@@ -71,7 +72,7 @@ public class BlogController {
 	}
 	
 	// 4. 관리 페이지 - 글쓰기
-	@RequestMapping("/{id}/adminwrite")
+	@RequestMapping("/adminwrite")
 	public String adminwrite(@PathVariable("id") String id, Model model) {
 		BlogVo vo = blogService.getBlog(id);
 		model.addAttribute("vo", vo);
@@ -83,7 +84,7 @@ public class BlogController {
 	}
 	
 	// 5. 카테고리 추가
-	@RequestMapping("/{id}/categoryadd")
+	@RequestMapping("/categoryadd")
 	public String categoryadd(@PathVariable("id") String id, @RequestParam("name") String name) {
 		CategoryVo vo = new CategoryVo();
 		vo.setId(id);
@@ -93,8 +94,15 @@ public class BlogController {
 		return "redirect:/" + id + "/admincategory";
 	}
 	
-	// 6. 글쓰기
-	@RequestMapping("/{id}/write")
+	// 6. 카테고리 삭제
+	@RequestMapping("/categorydelete/{no}")
+	public String categorydelete(@PathVariable("id") String id, @PathVariable("no") Long no) {
+		categoryService.deleteCategory(no);
+		return "redirect:/" + id + "/admincategory";
+	}
+	
+	// 7. 글쓰기
+	@RequestMapping("/write")
 	public String write(@PathVariable("id") String id, 
 			@RequestParam("category") String categoryName, PostVo vo) {
 		

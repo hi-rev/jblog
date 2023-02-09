@@ -34,12 +34,18 @@
 		      			<th>삭제</th>      			
 		      		</tr>
 		      		<c:set var="count" value="1" />
-		      		<c:forEach items="${list }" var="vo" varStatus="status" >
+		      		<c:forEach items="${list }" var="list" varStatus="status" >
 		      			<tr>
 							<td>${count }</td>
-							<td>${vo.name }</td>
-							<td>${vo.count }</td>   
-							<td><img src="${pageContext.request.contextPath}/assets/images/delete.jpg"></td>
+							<td>${list.name }</td>
+							<td>${list.count }</td>   
+							<td>
+								<c:if test='${list.count == 0 && list.name != "기본"}'>
+									<a href="${pageContext.request.contextPath}/${vo.id }/categorydelete/${list.no }">
+										<img src="${pageContext.request.contextPath}/assets/images/delete.jpg">
+									</a>
+								</c:if>
+							</td>
 						</tr>
 						<c:set var="count" value="${count+1 }" />	
 		      		</c:forEach>

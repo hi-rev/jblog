@@ -31,5 +31,9 @@ public class CategoryRepository {
 		Map<String, Object> map = Map.of("no", no, "id", id);
 		return sqlSession.selectOne("category.findCountByNo", map);
 	}
+
+	public void delete(Long no) {
+		sqlSession.delete("category.delete", no);
+	}
 	
 }

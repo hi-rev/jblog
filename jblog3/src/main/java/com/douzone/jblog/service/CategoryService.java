@@ -36,5 +36,9 @@ public class CategoryService {
 	public Long findCount(Long no, String id) {
 		return categoryRepository.findCountByNo(no, id);
 	}
+
+	public void deleteCategory(Long no) {
+		categoryRepository.delete(no);
+	}
 	
 }
