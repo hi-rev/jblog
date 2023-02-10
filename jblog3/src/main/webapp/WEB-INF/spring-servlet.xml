@@ -26,6 +26,14 @@
 		
 	<!-- Default Servlet Handler -->
 	<mvc:default-servlet-handler />
+	
+	<!-- Interceptors -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/user/auth"/>
+			<bean class="com.douzone.jblog.security.LoginInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 	<!-- ViewResolver -->
 	<bean id="viewResolver"

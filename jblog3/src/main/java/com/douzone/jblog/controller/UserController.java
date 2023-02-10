@@ -40,14 +40,9 @@ public class UserController {
 	}
 	
 	// 3. 로그인 페이지 이동
+	// -> login은 user/auth
 	@RequestMapping(value = "/login", method=RequestMethod.GET)
 	public String login() {
 		return "user/login";
-	}
-	
-	// 4. 로그인
-	@RequestMapping(value = "/login", method=RequestMethod.POST)
-	public String login(UserVo vo) {
-		return "redirect:/";
 	}
 }

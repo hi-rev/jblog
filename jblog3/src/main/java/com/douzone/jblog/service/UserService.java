@@ -16,4 +16,8 @@ public class UserService {
 		userRepository.insert(vo);
 	}
 
+	public UserVo getUser(UserVo vo) {
+		return userRepository.findByIdAndPassword(vo.getId(), vo.getPassword());
+	}
+
 }
