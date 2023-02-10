@@ -22,8 +22,9 @@
 						<li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
 					</c:otherwise>
 				</c:choose>
-
-				<li><a href="${pageContext.request.contextPath}/${vo.id }/adminbasic">블로그 관리</a></li>
+				<c:if test="${authUser.id == vo.id }">
+					<li><a href="${pageContext.request.contextPath}/${vo.id }/adminbasic">블로그 관리</a></li>
+				</c:if>
 			</ul>
 		</div>
 		<div id="wrapper">

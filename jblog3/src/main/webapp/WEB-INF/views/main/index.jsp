@@ -15,7 +15,7 @@
 		<ul class="menu">
 		<c:choose>
 			<c:when test="${empty authUser }">
-			<li><a href="${pageContext.request.contextPath}/user/auth">로그인</a></li>
+			<li><a href="${pageContext.request.contextPath}/user/login">로그인</a></li>
 			<li><a href="${pageContext.request.contextPath}/user/join">회원가입</a></li>
 		</c:when>
 		<c:otherwise>
