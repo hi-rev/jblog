@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.douzone.jblog.security.Auth;
 import com.douzone.jblog.service.BlogService;
 import com.douzone.jblog.service.CategoryService;
 import com.douzone.jblog.service.FileuploadService;
@@ -53,6 +54,7 @@ public class BlogController {
 	}
 	
 	// 2. 관리 페이지
+	@Auth
 	@RequestMapping("/adminbasic")	
 	public String adminBasic(@PathVariable("id") String id, Model model) {
 		BlogVo vo = blogService.getBlog(id);
@@ -61,6 +63,7 @@ public class BlogController {
 	}
 	
 	// 3. 관리 페이지 - 카테고리
+	@Auth
 	@RequestMapping("/admincategory")
 	public String admincategory(@PathVariable("id") String id, Model model) {
 		BlogVo vo = blogService.getBlog(id);
@@ -77,6 +80,7 @@ public class BlogController {
 	}
 	
 	// 4. 관리 페이지 - 글쓰기
+	@Auth
 	@RequestMapping("/adminwrite")
 	public String adminwrite(@PathVariable("id") String id, Model model) {
 		BlogVo vo = blogService.getBlog(id);
@@ -89,6 +93,7 @@ public class BlogController {
 	}
 	
 	// 5. 카테고리 추가
+	@Auth
 	@RequestMapping("/categoryadd")
 	public String categoryadd(@PathVariable("id") String id, @RequestParam("name") String name) {
 		CategoryVo vo = new CategoryVo();
@@ -100,6 +105,7 @@ public class BlogController {
 	}
 	
 	// 6. 카테고리 삭제
+	@Auth
 	@RequestMapping("/categorydelete/{no}")
 	public String categorydelete(@PathVariable("id") String id, @PathVariable("no") Long no) {
 		categoryService.deleteCategory(no);
@@ -107,6 +113,7 @@ public class BlogController {
 	}
 	
 	// 7. 글쓰기
+	@Auth
 	@RequestMapping("/write")
 	public String write(@PathVariable("id") String id, 
 			@RequestParam("category") String categoryName, PostVo vo) {
@@ -119,6 +126,7 @@ public class BlogController {
 	}
 	
 	// 8. 블로그 메인 변경하기(파일 업로드)
+	@Auth
 	@RequestMapping("/update")
 	public String mainupdate(@PathVariable("id") String id, BlogVo vo, MultipartFile file) {
 		String profile = fileuploadService.restore(file);
