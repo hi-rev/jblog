@@ -26,5 +26,6 @@
 
     <modules>
     	<module>jblog3</module>
+    	<module>jblog04</module>
     </modules>
 </project>
